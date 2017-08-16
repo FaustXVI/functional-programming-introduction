@@ -5,7 +5,10 @@ chai.should();
 // (String,[Movie]) => [Movie]
 function findByTitle(title, movies) {
     let result = [];
-    if (title === "The Matrix") result.push(movies[0]);
+    let movie;
+    while (movie = movies.shift()) {
+        if (movie.title.includes(title)) result.push(movie);
+    }
     return result;
 }
 
