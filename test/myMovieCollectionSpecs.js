@@ -3,7 +3,7 @@ import chai from "chai";
 chai.should();
 
 // String => String => Bool
-let isInfixOf = whole => title => {
+let isInfixOf = title => whole => {
     return whole.includes(title);
 };
 
@@ -24,7 +24,7 @@ let getTitle = movie => {
 
 // String => Movie => Bool
 let matches = title => movie => {
-    return isInfixOf(getTitle(movie))(title);
+    return compose(isInfixOf(title))(getTitle)(movie);
 };
 
 // String => [Movie] => [Movie]
