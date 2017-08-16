@@ -15,7 +15,7 @@ let matches = function (title, movie) {
 // (((String,Movie) => Bool),String,Movie,(Movie=>([Movie]=>[Movie])) => ([Movie]=>[Movie])
 let addIfMatches = function (predicate, title, movie, add) {
     if (predicate(title, movie)) return add(movie);
-    return function (ms) {
+    return (ms) => {
         return ms;
     };
 };
@@ -24,10 +24,8 @@ let addIfMatches = function (predicate, title, movie, add) {
 let findByTitle = function (title, movies) {
     let result = [];
     let predicate = matches;
-    let add = function (movie) {
-        return function (ms) {
-            return ms.concat(movie);
-        };
+    let add = (movie) => (ms) => {
+        return ms.concat(movie);
     };
     for (let movie of movies) {
         result = addIfMatches(predicate, title, movie, add)(result);
