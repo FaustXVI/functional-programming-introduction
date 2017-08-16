@@ -13,6 +13,7 @@ function matches(title, movie) {
 }
 
 // (String,Movie,[Movie]) => ()
+// FIXME : side effects on result
 function addIfMatches(title, movie, result) {
     if (matches(title, movie)) result.push(movie);
 }
