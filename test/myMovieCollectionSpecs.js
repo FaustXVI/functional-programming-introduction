@@ -12,9 +12,9 @@ let matches = (title) => (movie) => {
     return isInfixOf(movie.title, title);
 };
 
-// ((String => Movie => Bool),String,Movie,(Movie=>([Movie]=>[Movie])) => ([Movie]=>[Movie])
-let addIfMatches = function (predicate, title, movie, add) {
-    if (predicate(title)(movie)) return add(movie);
+// ((Movie => Bool),Movie,(Movie=>([Movie]=>[Movie])) => ([Movie]=>[Movie])
+let addIfMatches = function (predicate, movie, add) {
+    if (predicate(movie)) return add(movie);
     return (ms) => {
         return ms;
     };
@@ -23,12 +23,12 @@ let addIfMatches = function (predicate, title, movie, add) {
 // (String,[Movie]) => [Movie]
 let findByTitle = function (title, movies) {
     let result = [];
-    let predicate = matches;
+    let predicate = matches(title);
     let add = (movie) => (ms) => {
         return ms.concat(movie);
     };
     for (let movie of movies) {
-        result = addIfMatches(predicate, title, movie, add)(result);
+        result = addIfMatches(predicate, movie, add)(result);
     }
     return result;
 };
