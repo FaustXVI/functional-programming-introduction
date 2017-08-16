@@ -23,9 +23,7 @@ let matches = title => movie => {
 };
 
 // String => [Movie] => [Movie]
-let findByTitle = title => {
-    return compose(filter)(matches)(title);
-};
+let findByTitle = compose(filter)(matches);
 
 describe('My movie collection search by name', () => {
     let movies = [
