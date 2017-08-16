@@ -4,8 +4,9 @@ chai.should();
 
 // (String,[Movie]) => [Movie]
 function findByTitle(title, movies) {
-    if (title === "The Matrix") return [movies[0]];
-    return [];
+    let result = [];
+    if (title === "The Matrix") result.push(movies[0]);
+    return result;
 }
 
 describe('My movie collection search by name', () => {
