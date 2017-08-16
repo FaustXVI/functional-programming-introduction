@@ -2,6 +2,7 @@
 import chai from "chai";
 chai.should();
 
+// (String,[Movie]) => [Movie]
 function findByTitle(title, movies) {
     return [];
 }
