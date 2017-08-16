@@ -20,10 +20,9 @@ let addIfMatches = predicate => movie => add => {
     };
 };
 
-// String => [Movie] => [Movie]
-let findByTitle = title => movies => {
+// (Movie => Bool) => [Movie] => [Movie]
+let filter = predicate => movies => {
     let result = [];
-    let predicate = matches(title);
     let add = (movie) => (ms) => {
         return ms.concat(movie);
     };
@@ -31,6 +30,12 @@ let findByTitle = title => movies => {
         result = addIfMatches(predicate)(movie)(add)(result);
     }
     return result;
+};
+
+// String => [Movie] => [Movie]
+let findByTitle = title => movies => {
+    let predicate = matches(title);
+    return filter(predicate)(movies);
 };
 
 describe('My movie collection search by name', () => {
