@@ -2,12 +2,24 @@
 import chai from "chai";
 chai.should();
 
+function isInfixOf(whole, title) {
+    return whole.includes(title);
+}
+
+function matches(title, movie) {
+    return isInfixOf(movie.title, title);
+}
+
+function addIfMatches(title, movie, result) {
+    if (matches(title, movie)) result.push(movie);
+}
+
 // (String,[Movie]) => [Movie]
 function findByTitle(title, movies) {
     let result = [];
     let movie;
     while (movie = movies.shift()) {
-        if (movie.title.includes(title)) result.push(movie);
+        addIfMatches(title, movie, result);
     }
     return result;
 }
