@@ -12,7 +12,7 @@ let matches = function (title, movie) {
     return isInfixOf(movie.title, title);
 };
 
-// (((String,Movie) => Bool),String,Movie,(Movie=>([Movie]=>[Movie])) => (Movie=>([Movie])=>[Movie])
+// (((String,Movie) => Bool),String,Movie,(Movie=>([Movie]=>[Movie])) => ([Movie]=>[Movie])
 let addIfMatches = function (predicate, title, movie, add) {
     if (predicate(title, movie)) return add(movie);
     return function (ms) {
