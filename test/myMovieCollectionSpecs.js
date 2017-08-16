@@ -18,9 +18,8 @@ let matches = title => movie => {
 };
 
 // String => [Movie] => [Movie]
-let findByTitle = title => movies => {
-    let predicate = matches(title);
-    return filter(predicate)(movies);
+let findByTitle = title => {
+    return filter(matches(title));
 };
 
 describe('My movie collection search by name', () => {
