@@ -2,6 +2,10 @@
 import chai from "chai";
 chai.should();
 
+function findByTitle(title, movies) {
+    return [];
+}
+
 describe('My movie collection search by name', () => {
     it('should return empty when none found', () => {
         findByTitle("Interstellar", [
