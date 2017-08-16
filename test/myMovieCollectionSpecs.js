@@ -12,6 +12,11 @@ let filter = predicate => movies => {
     return movies.filter(predicate);
 };
 
+// ( b => c ) => ( a => b ) => ( a => c )
+let compose = f => g => {
+    return x => f(g(x));
+};
+
 // String => Movie => Bool
 let matches = title => movie => {
     return isInfixOf(movie.title)(title);
