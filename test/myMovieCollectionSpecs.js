@@ -17,9 +17,14 @@ let compose = f => g => {
     return x => f(g(x));
 };
 
+// Movie => String
+let getTitle = movie => {
+    return movie.title;
+};
+
 // String => Movie => Bool
 let matches = title => movie => {
-    return isInfixOf(movie.title)(title);
+    return isInfixOf(getTitle(movie))(title);
 };
 
 // String => [Movie] => [Movie]
