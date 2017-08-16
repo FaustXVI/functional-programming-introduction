@@ -28,70 +28,38 @@ function findByTitle(title, movies) {
 }
 
 describe('My movie collection search by name', () => {
+    let movies = [
+        {
+            title: "The Matrix",
+            year: 1999
+        },
+        {
+            title: "A beautiful mind",
+            year: 2001
+        },
+        {
+            title: "Intouchable",
+            year: 2011
+        },
+        {
+            title: "Forest Gump",
+            year: 1994
+        }
+    ];
+
     it('should return empty when none found', () => {
-        findByTitle("Interstellar", [
-            {
-                title: "The Matrix",
-                year: 1999
-            },
-            {
-                title: "A beautiful mind",
-                year: 2001
-            },
-            {
-                title: "Intouchable",
-                year: 2011
-            },
-            {
-                title: "Forest Gump",
-                year: 1994
-            }
-        ]).should.be.empty;
+        findByTitle("Interstellar", movies).should.be.empty;
     });
 
     it('should return a matching movie', () => {
-        findByTitle("The Matrix", [
-            {
-                title: "The Matrix",
-                year: 1999
-            },
-            {
-                title: "A beautiful mind",
-                year: 2001
-            },
-            {
-                title: "Intouchable",
-                year: 2011
-            },
-            {
-                title: "Forest Gump",
-                year: 1994
-            }
-        ]).should.deep.equal([{
+        findByTitle("The Matrix", movies).should.deep.equal([{
             title: "The Matrix",
             year: 1999
         }]);
     });
 
     it('should return all matching movies', () => {
-        findByTitle("o", [
-            {
-                title: "The Matrix",
-                year: 1999
-            },
-            {
-                title: "A beautiful mind",
-                year: 2001
-            },
-            {
-                title: "Intouchable",
-                year: 2011
-            },
-            {
-                title: "Forest Gump",
-                year: 1994
-            }
-        ]).should.deep.have.members([
+        findByTitle("o", movies).should.deep.have.members([
             {
                 title: "Intouchable",
                 year: 2011
