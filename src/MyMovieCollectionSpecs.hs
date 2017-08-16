@@ -7,10 +7,10 @@ data Movie = Movie {
 } deriving (Show, Eq)
 
 matches :: String -> Movie -> Bool
-matches t = (.)(isInfixOf t)(title)
+matches t = isInfixOf t . title
 
 findByTitle :: String -> [Movie] -> [Movie]
-findByTitle = (.)(filter)(matches)
+findByTitle = filter .matches
 
 main = hspec $ do
     let movies = [ Movie {
