@@ -14,11 +14,9 @@ let matches = function (title, movie) {
 
 // (((String,Movie) => Bool),String,Movie,(Movie=>([Movie]=>[Movie])) => (Movie=>([Movie])=>[Movie])
 let addIfMatches = function (predicate, title, movie, add) {
-    if (predicate(title, movie)) return add;
-    return function (m) {
-        return function (ms) {
-            return ms;
-        };
+    if (predicate(title, movie)) return add(movie);
+    return function (ms) {
+        return ms;
     };
 };
 
@@ -32,8 +30,7 @@ let findByTitle = function (title, movies) {
         };
     };
     for (let movie of movies) {
-        // FIXME : avoid duplication of parameter movie
-        result = addIfMatches(predicate, title, movie, add)(movie)(result);
+        result = addIfMatches(predicate, title, movie, add)(result);
     }
     return result;
 };
