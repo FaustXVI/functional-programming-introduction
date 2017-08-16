@@ -3,24 +3,24 @@ import chai from "chai";
 chai.should();
 
 // (String,String) => Bool
-function isInfixOf(whole, title) {
+let isInfixOf = function (whole, title) {
     return whole.includes(title);
-}
+};
 
 // (String,Movie) => Bool
-function matches(title, movie) {
+let matches = function (title, movie) {
     return isInfixOf(movie.title, title);
-}
+};
 
 // (((String,Movie) => Bool),String,Movie,(Movie=>())) => (Movie=>())
-function addIfMatches(predicate, title, movie, add) {
+let addIfMatches = function (predicate, title, movie, add) {
     if (predicate(title, movie)) return add;
     return function (m) {
     };
-}
+};
 
 // (String,[Movie]) => [Movie]
-function findByTitle(title, movies) {
+let findByTitle = function (title, movies) {
     let result = [];
     let predicate = matches;
     // FIXME : side effects in this function
@@ -33,7 +33,7 @@ function findByTitle(title, movies) {
         addIfMatches(predicate, title, movie, add)(movie);
     }
     return result;
-}
+};
 
 describe('My movie collection search by name', () => {
     let movies = [
