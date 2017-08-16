@@ -3,29 +3,19 @@ import chai from "chai";
 chai.should();
 
 // String => String => Bool
-let isInfixOf = title => whole => {
-    return whole.includes(title);
-};
+let isInfixOf = title => whole => whole.includes(title);
 
 // (Movie => Bool) => [Movie] => [Movie]
-let filter = predicate => movies => {
-    return movies.filter(predicate);
-};
+let filter = predicate => movies => movies.filter(predicate);
 
 // ( b => c ) => ( a => b ) => ( a => c )
-let compose = f => g => {
-    return x => f(g(x));
-};
+let compose = f => g => x => f(g(x));
 
 // Movie => String
-let getTitle = movie => {
-    return movie.title;
-};
+let getTitle = movie => movie.title;
 
 // String => Movie => Bool
-let matches = title => {
-    return compose(isInfixOf(title))(getTitle);
-};
+let matches = title => compose(isInfixOf(title))(getTitle);
 
 // String => [Movie] => [Movie]
 let findByTitle = compose(filter)(matches);
