@@ -21,6 +21,7 @@ function addIfMatches(title, movie, result) {
 // (String,[Movie]) => [Movie]
 function findByTitle(title, movies) {
     let result = [];
+    let predicate = matches;
     for (let movie of movies) {
         addIfMatches(title, movie, result);
     }
