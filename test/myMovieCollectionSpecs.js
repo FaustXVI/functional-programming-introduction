@@ -15,7 +15,7 @@ function matches(title, movie) {
 // (((String,Movie) => Bool),String,Movie,(Movie=>())) => (Movie=>())
 function addIfMatches(predicate, title, movie, add) {
     if (predicate(title, movie)) return add;
-    return function doNothing(m) {
+    return function (m) {
     };
 }
 
@@ -23,9 +23,8 @@ function addIfMatches(predicate, title, movie, add) {
 function findByTitle(title, movies) {
     let result = [];
     let predicate = matches;
-    // FIXME : avoid duplication of name «add»
     // FIXME : side effects in this function
-    let add = function add(movie) {
+    let add = function (movie) {
         result.push(movie);
     };
     for (let movie of movies) {
