@@ -23,10 +23,14 @@ function addIfMatches(predicate, title, movie, add) {
 function findByTitle(title, movies) {
     let result = [];
     let predicate = matches;
+    // FIXME : avoid duplication of name «add»
+    // FIXME : side effects in this function
     let add = function add(movie) {
         result.push(movie);
     };
     for (let movie of movies) {
+        // FIXME : modification of result hard to see !
+        // FIXME : avoid duplication of parameter movie
         addIfMatches(predicate, title, movie, add)(movie);
     }
     return result;
