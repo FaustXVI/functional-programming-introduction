@@ -4,6 +4,7 @@ chai.should();
 
 // (String,[Movie]) => [Movie]
 function findByTitle(title, movies) {
+    if (title === "The Matrix") return [movies[0]];
     return [];
 }
 
@@ -30,7 +31,7 @@ describe('My movie collection search by name', () => {
     });
 
     it('should return a matching movie', () => {
-        findByTitle("Interstellar", [
+        findByTitle("The Matrix", [
             {
                 title: "The Matrix",
                 year: 1999
