@@ -12,11 +12,13 @@ let matches = function (title, movie) {
     return isInfixOf(movie.title, title);
 };
 
-// (((String,Movie) => Bool),String,Movie,((Movie,[Movie])=>[Movie])) => ((Movie,[Movie])=>[Movie])
+// (((String,Movie) => Bool),String,Movie,(Movie=>([Movie]=>[Movie])) => (Movie=>([Movie])=>[Movie])
 let addIfMatches = function (predicate, title, movie, add) {
     if (predicate(title, movie)) return add;
-    return function (m,ms) {
-        return ms;
+    return function (m) {
+        return function (ms) {
+            return ms;
+        };
     };
 };
 
@@ -24,12 +26,14 @@ let addIfMatches = function (predicate, title, movie, add) {
 let findByTitle = function (title, movies) {
     let result = [];
     let predicate = matches;
-    let add = function (movie,ms) {
-        return ms.concat(movie);
+    let add = function (movie) {
+        return function (ms) {
+            return ms.concat(movie);
+        };
     };
     for (let movie of movies) {
         // FIXME : avoid duplication of parameter movie
-        result = addIfMatches(predicate, title, movie, add)(movie,result);
+        result = addIfMatches(predicate, title, movie, add)(movie)(result);
     }
     return result;
 };
