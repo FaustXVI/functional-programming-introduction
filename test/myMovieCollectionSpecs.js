@@ -20,8 +20,7 @@ function addIfMatches(title, movie, result) {
 // (String,[Movie]) => [Movie]
 function findByTitle(title, movies) {
     let result = [];
-    let movie;
-    while (movie = movies.shift()) {
+    for (let movie of movies) {
         addIfMatches(title, movie, result);
     }
     return result;
