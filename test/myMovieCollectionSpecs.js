@@ -2,14 +2,17 @@
 import chai from "chai";
 chai.should();
 
+// (String,String) => Bool
 function isInfixOf(whole, title) {
     return whole.includes(title);
 }
 
+// (String,Movie) => Bool
 function matches(title, movie) {
     return isInfixOf(movie.title, title);
 }
 
+// (String,Movie,[Movie]) => ()
 function addIfMatches(title, movie, result) {
     if (matches(title, movie)) result.push(movie);
 }
