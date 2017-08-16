@@ -54,4 +54,33 @@ describe('My movie collection search by name', () => {
             year: 1999
         }]);
     });
+
+    it('should return all matching movies', () => {
+        findByTitle("o", [
+            {
+                title: "The Matrix",
+                year: 1999
+            },
+            {
+                title: "A beautiful mind",
+                year: 2001
+            },
+            {
+                title: "Intouchable",
+                year: 2011
+            },
+            {
+                title: "Forest Gump",
+                year: 1994
+            }
+        ]).should.deep.have.members([
+            {
+                title: "Intouchable",
+                year: 2011
+            },
+            {
+                title: "Forest Gump",
+                year: 1994
+            }]);
+    });
 });
