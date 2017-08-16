@@ -28,4 +28,28 @@ describe('My movie collection search by name', () => {
             }
         ]).should.be.empty;
     });
+
+    it('should return a matching movie', () => {
+        findByTitle("Interstellar", [
+            {
+                title: "The Matrix",
+                year: 1999
+            },
+            {
+                title: "A beautiful mind",
+                year: 2001
+            },
+            {
+                title: "Intouchable",
+                year: 2011
+            },
+            {
+                title: "Forest Gump",
+                year: 1994
+            }
+        ]).should.deep.equal([{
+            title: "The Matrix",
+            year: 1999
+        }]);
+    });
 });
