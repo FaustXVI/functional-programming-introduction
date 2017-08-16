@@ -7,29 +7,14 @@ let isInfixOf = whole => title => {
     return whole.includes(title);
 };
 
+// (Movie => Bool) => [Movie] => [Movie]
+let filter = predicate => movies => {
+    return movies.filter(predicate);
+};
+
 // String => Movie => Bool
 let matches = title => movie => {
     return isInfixOf(movie.title)(title);
-};
-
-// (Movie => Bool) => Movie => (Movie=>[Movie]=>[Movie]) => ([Movie]=>[Movie])
-let addIfMatches = predicate => movie => add => {
-    if (predicate(movie)) return add(movie);
-    return (ms) => {
-        return ms;
-    };
-};
-
-// (Movie => Bool) => [Movie] => [Movie]
-let filter = predicate => movies => {
-    let result = [];
-    let add = (movie) => (ms) => {
-        return ms.concat(movie);
-    };
-    for (let movie of movies) {
-        result = addIfMatches(predicate)(movie)(add)(result);
-    }
-    return result;
 };
 
 // String => [Movie] => [Movie]
