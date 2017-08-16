@@ -23,8 +23,8 @@ let getTitle = movie => {
 };
 
 // String => Movie => Bool
-let matches = title => movie => {
-    return compose(isInfixOf(title))(getTitle)(movie);
+let matches = title => {
+    return compose(isInfixOf(title))(getTitle);
 };
 
 // String => [Movie] => [Movie]
