@@ -22,6 +22,9 @@ function addIfMatches(predicate,title, movie, result) {
 function findByTitle(title, movies) {
     let result = [];
     let predicate = matches;
+    let add = function add(movie) {
+        result.push(movie);
+    };
     for (let movie of movies) {
         addIfMatches(predicate,title, movie, result);
     }
