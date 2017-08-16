@@ -12,10 +12,10 @@ function matches(title, movie) {
     return isInfixOf(movie.title, title);
 }
 
-// (((String,Movie) => Bool),String,Movie,[Movie]) => ()
+// (((String,Movie) => Bool),String,Movie,(Movie=>())) => ()
 // FIXME : side effects on result
-function addIfMatches(predicate,title, movie, result) {
-    if (predicate(title, movie)) result.push(movie);
+function addIfMatches(predicate,title, movie, add) {
+    if (predicate(title, movie)) add(movie);
 }
 
 // (String,[Movie]) => [Movie]
@@ -26,7 +26,7 @@ function findByTitle(title, movies) {
         result.push(movie);
     };
     for (let movie of movies) {
-        addIfMatches(predicate,title, movie, result);
+        addIfMatches(predicate,title, movie, add);
     }
     return result;
 }
