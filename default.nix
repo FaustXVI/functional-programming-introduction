@@ -4,6 +4,7 @@ with import <nixpkgs> {}; {
         buildInputs = [
             pkgs.nodejs
             pkgs.ghc
+            pkgs.cabal-install
         ];
     };
 }
