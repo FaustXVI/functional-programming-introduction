@@ -1,10 +1,11 @@
-with import <nixpkgs> {}; {
-    nodeEnv = stdenv.mkDerivation {
+with import <nixpkgs> {}; 
+let 
+    ghc = haskellPackages.ghcWithPackages (pkgs: with pkgs; [hspec]);
+in stdenv.mkDerivation {
         name = "javascript-sandbox";
         buildInputs = [
             pkgs.nodejs
-            pkgs.ghc
+            ghc
             pkgs.cabal-install
         ];
-    };
-}
+    }
